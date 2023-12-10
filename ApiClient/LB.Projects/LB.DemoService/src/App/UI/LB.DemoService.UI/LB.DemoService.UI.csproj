@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <!--Containerisation-->
+  <PropertyGroup>
+    <ContainerRepository>LB.DemoService.UI</ContainerRepository>
+    <ContainerRegistry>localhost:{CONTAINER_REGISTRY_PORT}</ContainerRegistry>
+    <ContainerImageTag>0.0.1-alpha</ContainerImageTag>
+  </PropertyGroup>
+  <ItemGroup>
+    <ContainerEnvironmentVariable Include="ASPNETCORE_HTTP_PORTS" Value="45072" />
+    <ContainerEnvironmentVariable Include="DOTNET_GENERATE_ASPNET_CERTIFICATE" Value="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LB.Aspire.ServiceDefaults" Version="1.0.0" />
+    <PackageReference Include="LB.DemoService.Domain" Version="1.0.0" />
+    <PackageReference Include="LB.DemoService.Infrastructure" Version="1.0.0" />
+    <PackageReference Include="LB.DemoService.UseCases" Version="1.0.0" />
+    <PackageReference Include="LB.DemoService.WebApi.ClientSdk" Version="1.0.0" />
+    <PackageReference Include="LB.SharedKernel" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LB.DemoService.UI.Client\LB.DemoService.UI.Client.csproj" />
+  </ItemGroup>
+
+</Project>

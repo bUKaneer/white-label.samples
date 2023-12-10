@@ -1,0 +1,7 @@
+{
+  "projectNameBase": "Gateway",
+  "aspireProjectName": "Gateway.Aspire",
+  "aspireSolutionFolder": "C:\\WL\\Gateway\\Gateway.Aspire",
+  "serviceDefaultsPackage": "Gateway.Aspire.ServiceDefaults",
+  "packagesAndContainersSolutionFolder": "C:\\WL\\Gateway\\Gateway.PackagesAndContainers"
+}

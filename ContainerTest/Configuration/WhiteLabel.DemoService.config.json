@@ -1,0 +1,7 @@
+{
+  "projectNameBase": "WhiteLabel",
+  "aspireProjectName": "WhiteLabel.Aspire",
+  "aspireSolutionFolder": "C:\\WL\\WhiteLabel\\WhiteLabel.Aspire",
+  "serviceDefaultsPackage": "WhiteLabel.Aspire.ServiceDefaults",
+  "packagesAndContainersSolutionFolder": "C:\\WL\\WhiteLabel\\WhiteLabel.PackagesAndContainers"
+}

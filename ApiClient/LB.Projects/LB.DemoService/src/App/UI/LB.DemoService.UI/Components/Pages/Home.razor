@@ -1,0 +1,28 @@
+﻿@page "/"
+@inject ILogger<Home> Logger
+@inject LB.DemoService.WebApi.ClientSdk.Client ApiClient
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await ApiClient.GetWeatherForecastAsync();
+            Console.WriteLine(response);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Exception: {exception.message}", ex.Message);
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+
+}

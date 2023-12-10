@@ -1,0 +1,7 @@
+{
+  "projectNameBase": "LB",
+  "aspireProjectName": "LB.Aspire",
+  "aspireSolutionFolder": "C:\\WL\\LB\\LB.Aspire",
+  "serviceDefaultsPackage": "LB.Aspire.ServiceDefaults",
+  "packagesAndContainersSolutionFolder": "C:\\WL\\LB\\LB.PackagesAndContainers"
+}

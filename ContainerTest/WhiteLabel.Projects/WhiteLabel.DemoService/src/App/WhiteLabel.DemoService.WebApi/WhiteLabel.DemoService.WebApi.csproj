@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>WebApi</RootNamespace>
+  </PropertyGroup>
+
+  <!--Containerisation-->
+  <PropertyGroup>
+    <ContainerRepository>WhiteLabel.DemoService.Api</ContainerRepository>
+    <ContainerRegistry>localhost:39444</ContainerRegistry>
+    <ContainerImageTag>0.0.1-alpha</ContainerImageTag>
+  </PropertyGroup>
+    <ItemGroup>
+    <ContainerEnvironmentVariable Include="ASPNETCORE_HTTP_PORTS" Value="17460" />
+    <ContainerEnvironmentVariable Include="DOTNET_GENERATE_ASPNET_CERTIFICATE" Value="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Microsoft.NET.Build.Containers" Version="8.0.100" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="WhiteLabel.Aspire.ServiceDefaults" Version="1.0.0" />
+    <PackageReference Include="WhiteLabel.DemoService.Domain" Version="1.0.0" />
+    <PackageReference Include="WhiteLabel.DemoService.Infrastructure" Version="1.0.0" />
+    <PackageReference Include="WhiteLabel.DemoService.UseCases" Version="1.0.0" />
+    <PackageReference Include="WhiteLabel.SharedKernel" Version="1.0.0" />
+  </ItemGroup>
+
+</Project>

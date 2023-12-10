@@ -1,0 +1,4 @@
+GET http://localhost:18322/weatherforecast
+
+###
+GET http://localhost:5167/bff/weatherforecast 

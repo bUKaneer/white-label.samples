@@ -1,0 +1,58 @@
+version: '3.9'
+name: whitelabel
+services:
+
+  whitelabel-registry-ui:
+    image: joxit/docker-registry-ui:main
+    restart: always
+    ports:
+      - 43266:80
+    environment:
+      - SINGLE_REGISTRY=true
+      - REGISTRY_TITLE=Docker Registry UI
+      - DELETE_IMAGES=true
+      - SHOW_CONTENT_DIGEST=true
+      - NGINX_PROXY_PASS_URL=http://whitelabel-registry-server:5000
+      - SHOW_CATALOG_NB_TAGS=true
+      - CATALOG_MIN_BRANCHES=1
+      - CATALOG_MAX_BRANCHES=1
+      - TAGLIST_PAGE_SIZE=100
+      - REGISTRY_SECURED=false
+      - CATALOG_ELEMENTS_LIMIT=1000
+    container_name: whitelabel-registry-ui
+
+  whitelabel-registry-server:
+    image: registry:2.8.2
+    restart: always
+    ports:
+      - 39444:5000
+    environment:
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: '[http://registry.example.com]'
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods: '[HEAD,GET,OPTIONS,DELETE]'
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Credentials: '[true]'
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers: '[Authorization,Accept,Cache-Control]'
+      REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers: '[Docker-Content-Digest]'
+      REGISTRY_STORAGE_DELETE_ENABLED: 'true'
+    volumes:
+      - ./data/registry:/var/lib/registry
+    container_name: whitelabel-registry
+
+  whitelabel-nuget-server:
+    image: loicsharma/baget:latest
+    restart: always
+    ports:
+      - 35476:80
+    environment:
+      # The following config is the API Key used to publish packages.
+      # You should change this to a secret value to secure your server.
+      # NUGET-SERVER-API-KEY
+      - ApiKey=8B516EDB-7523-476E-AF43-79CCA054CE9F
+      - Storage__Type=FileSystem
+      - Storage__Path=/var/baget/packages
+      - Database__Type=Sqlite
+      - Database__ConnectionString=Data Source=/var/baget/baget.db
+      - Search__Type=Database
+    volumes:
+      - ./data/baget:/var/baget
+      - ./data/baget/data-protection-keys:/root/.aspnet/DataProtection-Keys
+    container_name: whitelabel-nuget-ui
